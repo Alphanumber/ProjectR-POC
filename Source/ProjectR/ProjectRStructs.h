@@ -7,28 +7,28 @@ struct FCharacterComponentStruct
 {
 	GENERATED_USTRUCT_BODY()
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStruct)
-		USkeletalMesh* sklMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStruct)
+		USkeletalMesh* SkeletalMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStruct)
-		UAnimBlueprintGeneratedClass* animBlueprintClass;
+		UAnimBlueprintGeneratedClass* AnimBlueprintClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStruct)
-		UAnimInstance* animInstance;
+		UAnimInstance* AnimInstance;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStruct)
-		float capsuleHalfHeight;
+		float CapsuleHalfHeight;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStruct)
-		FVector relativeLocation;
+		FVector RelativeLocation;
 
 	FCharacterComponentStruct()
 	{
-		sklMesh = NULL;
-		animBlueprintClass = NULL;
-		animInstance = NULL;
-		capsuleHalfHeight = 0.f;
-		relativeLocation = FVector(0.f);
+		SkeletalMesh = NULL;
+		AnimBlueprintClass = NULL;
+		AnimInstance = NULL;
+		CapsuleHalfHeight = 0.f;
+		RelativeLocation = FVector(0.f);
 	}
 };
 
@@ -38,33 +38,33 @@ struct FCharacterStruct
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStruct)
-	struct FCharacterComponentStruct characterComponentStruct;
+	struct FCharacterComponentStruct CharacterComponentStruct;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats)
-	FString characterName;
+	FString CharacterName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats)
-	int32 hitPoints;
+	int32 HitPoints;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats)
-	int32 attackPower;
+	int32 AttackPower;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats)
-	int32 magicPower;
+	int32 MagicPower;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats)
-	float atbSpeed;
+	float AtbSpeed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats)
-	float atbProgress;
+	float AtbProgress;
 
 	FCharacterStruct()
 	{
-		hitPoints = 100;
-		attackPower = 1;
-		magicPower = 1;
-		atbSpeed = 1.f;
-		atbProgress = 0.f;
-		characterComponentStruct = FCharacterComponentStruct::FCharacterComponentStruct();
+		HitPoints = 100;
+		AttackPower = 1;
+		MagicPower = 1;
+		AtbSpeed = 1.f;
+		AtbProgress = 0.f;
+		CharacterComponentStruct = FCharacterComponentStruct::FCharacterComponentStruct();
 	}
 };

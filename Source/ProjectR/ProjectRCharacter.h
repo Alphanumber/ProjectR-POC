@@ -1,6 +1,7 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 #pragma once
 #include "GameFramework/Character.h"
+#include "EncounterVolume.h"
 #include "ProjectRStructs.h"
 #include "ProjectRCharacter.generated.h"
 
@@ -13,10 +14,13 @@ public:
 	AProjectRCharacter(const FObjectInitializer& ObjectInitializer);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Character)
-	bool isInBattle;
+	bool bIsInBattle;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
-	FCharacterStruct character;
+	FCharacterStruct Character;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Encounter)
+	AEncounterVolume* EncounterVolume;
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Initialize")
 	void BeginPlay();
@@ -25,13 +29,13 @@ public:
 	virtual void Tick(float DeltaSeconds) OVERRIDE;
 
 	UFUNCTION(BlueprintCallable, Category = Character)
-	void MakeCharacterStruct(UPARAM(ref) FCharacterStruct& characterStruct);
+	void MakeCharacterStruct(UPARAM(ref) FCharacterStruct& CharacterStruct);
 
 	UFUNCTION(BlueprintCallable, Category = Character)
-	void InitCharacter(UPARAM(ref) FCharacterStruct& characterStruct);
+	void InitializeCharacter(UPARAM(ref) FCharacterStruct& CharacterStruct);
 
 	UFUNCTION(BlueprintCallable, Category = Character)
-	void SetATBProgress(float atbProgress);
+	void SetATBProgress(float AtbProgress);
 
 	UFUNCTION(BlueprintCallable, Category = Character)
 	float GetATBProgress();

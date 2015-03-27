@@ -14,58 +14,58 @@ AProjectRCharacter::AProjectRCharacter(const FObjectInitializer& ObjectInitializ
 
 void AProjectRCharacter::BeginPlay_Implementation()
 {
-	character.characterComponentStruct.capsuleHalfHeight = GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight();
-	character.characterComponentStruct.sklMesh = GetMesh()->SkeletalMesh;
-	character.characterComponentStruct.animBlueprintClass = GetMesh()->AnimBlueprintGeneratedClass;
-	character.characterComponentStruct.relativeLocation = GetMesh()->RelativeLocation;
+	Character.CharacterComponentStruct.CapsuleHalfHeight = GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight();
+	Character.CharacterComponentStruct.SkeletalMesh = GetMesh()->SkeletalMesh;
+	Character.CharacterComponentStruct.AnimBlueprintClass = GetMesh()->AnimBlueprintGeneratedClass;
+	Character.CharacterComponentStruct.RelativeLocation = GetMesh()->RelativeLocation;
 
 	Super::BeginPlay();
 }
 
 void AProjectRCharacter::Tick(float DeltaSeconds){
-	if (isInBattle)
+	if (bIsInBattle)
 	{
-		if (character.atbProgress < 1.0f)
+		if (Character.AtbProgress < 1.0f)
 		{
-			character.atbProgress = character.atbProgress + (character.atbSpeed * (.5 * DeltaSeconds));
+			Character.AtbProgress = Character.AtbProgress + (Character.AtbSpeed * (.5 * DeltaSeconds));
 		}
 		else
 		{
-			character.atbProgress = 1.0f;
+			Character.AtbProgress = 1.0f;
 		}
 	}
 
 	Super::Tick(DeltaSeconds);
 }
 
-void AProjectRCharacter::MakeCharacterStruct(UPARAM(ref) FCharacterStruct& characterStruct)
+void AProjectRCharacter::MakeCharacterStruct(UPARAM(ref) FCharacterStruct& CharacterStruct)
 {
-	characterStruct.characterComponentStruct.capsuleHalfHeight = GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight();
-	characterStruct.characterComponentStruct.sklMesh = GetMesh()->SkeletalMesh;
-	characterStruct.characterComponentStruct.animBlueprintClass = GetMesh()->AnimBlueprintGeneratedClass;
-	characterStruct.characterComponentStruct.relativeLocation = GetMesh()->RelativeLocation;
+	CharacterStruct.CharacterComponentStruct.CapsuleHalfHeight = GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight();
+	CharacterStruct.CharacterComponentStruct.SkeletalMesh = GetMesh()->SkeletalMesh;
+	CharacterStruct.CharacterComponentStruct.AnimBlueprintClass = GetMesh()->AnimBlueprintGeneratedClass;
+	CharacterStruct.CharacterComponentStruct.RelativeLocation = GetMesh()->RelativeLocation;
 }
 
-void AProjectRCharacter::InitCharacter(UPARAM(ref) FCharacterStruct& characterStruct)
+void AProjectRCharacter::InitializeCharacter(UPARAM(ref) FCharacterStruct& CharacterStruct)
 {
-	character.attackPower = characterStruct.attackPower;
-	character.characterName = characterStruct.characterName;
-	character.hitPoints = characterStruct.hitPoints;
-	character.magicPower = characterStruct.magicPower;
+	Character.AttackPower = CharacterStruct.AttackPower;
+	Character.CharacterName = CharacterStruct.CharacterName;
+	Character.HitPoints = CharacterStruct.HitPoints;
+	Character.MagicPower = CharacterStruct.MagicPower;
 
-	GetCapsuleComponent()->SetCapsuleHalfHeight(characterStruct.characterComponentStruct.capsuleHalfHeight);
-	GetMesh()->SetSkeletalMesh(characterStruct.characterComponentStruct.sklMesh);
-	GetMesh()->AnimBlueprintGeneratedClass = characterStruct.characterComponentStruct.animBlueprintClass;
+	GetCapsuleComponent()->SetCapsuleHalfHeight(CharacterStruct.CharacterComponentStruct.CapsuleHalfHeight);
+	GetMesh()->SetSkeletalMesh(CharacterStruct.CharacterComponentStruct.SkeletalMesh);
+	GetMesh()->AnimBlueprintGeneratedClass = CharacterStruct.CharacterComponentStruct.AnimBlueprintClass;
 	GetMesh()->InitAnim(true);
-	GetMesh()->SetRelativeLocation(characterStruct.characterComponentStruct.relativeLocation);
+	GetMesh()->SetRelativeLocation(CharacterStruct.CharacterComponentStruct.RelativeLocation);
 }
 
-void AProjectRCharacter::SetATBProgress(float atbProgress)
+void AProjectRCharacter::SetATBProgress(float AtbProgress)
 {
-	character.atbProgress = atbProgress;
+	Character.AtbProgress = AtbProgress;
 }
 
 float AProjectRCharacter::GetATBProgress()
 {
-	return character.atbProgress;
+	return Character.AtbProgress;
 }
