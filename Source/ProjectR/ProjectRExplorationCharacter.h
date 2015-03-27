@@ -32,6 +32,14 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		float BaseLookUpRate;
 
+	/** Characters and stats in whole party */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Party)
+		TArray<FCharacterStruct> PartyMembers;
+
+	/** Characters and stats in battle party */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Party)
+		TArray<FCharacterStruct> BattleParty;
+
 protected:
 
 	/** Called for forwards/backward input */

@@ -18,7 +18,21 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Character)
 	FCharacterStruct character;
 
+	UFUNCTION(BlueprintNativeEvent, Category = "Initialize")
+	void BeginPlay();
+
+	UFUNCTION(BlueprintCallable, Category = "Game")
+	virtual void Tick(float DeltaSeconds) OVERRIDE;
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void MakeCharacterStruct(UPARAM(ref) FCharacterStruct& characterStruct);
+
 	UFUNCTION(BlueprintCallable, Category = Character)
 	void InitCharacter(UPARAM(ref) FCharacterStruct& characterStruct);
-};
 
+	UFUNCTION(BlueprintCallable, Category = Character)
+	void SetATBProgress(float atbProgress);
+
+	UFUNCTION(BlueprintCallable, Category = Character)
+	float GetATBProgress();
+};
