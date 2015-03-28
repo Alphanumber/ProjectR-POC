@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "ProjectRStructs.h"
 #include "GameFramework/Volume.h"
 #include "EncounterVolume.generated.h"
 
@@ -20,7 +21,5 @@ class PROJECTR_API AEncounterVolume : public AVolume
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Encounter)
-	TArray<AProjectRCharacter*> MappedCharacters;
-	
-	
+	TArray<FCharacterStruct> MappedCharacterStructs;
 };

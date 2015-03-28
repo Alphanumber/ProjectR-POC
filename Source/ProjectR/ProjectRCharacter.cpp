@@ -19,6 +19,11 @@ void AProjectRCharacter::BeginPlay_Implementation()
 	Character.CharacterComponentStruct.AnimBlueprintClass = GetMesh()->AnimBlueprintGeneratedClass;
 	Character.CharacterComponentStruct.RelativeLocation = GetMesh()->RelativeLocation;
 
+	if (EncounterVolume != NULL)
+	{
+		EncounterVolume->MappedCharacterStructs.Add(Character);
+	}
+
 	Super::BeginPlay();
 }
 

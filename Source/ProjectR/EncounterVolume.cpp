@@ -2,7 +2,3 @@
 
 #include "ProjectR.h"
 #include "EncounterVolume.h"
-
-
-
-
