@@ -14,10 +14,15 @@ AProjectRCharacter::AProjectRCharacter(const FObjectInitializer& ObjectInitializ
 
 void AProjectRCharacter::BeginPlay_Implementation()
 {
+	Character.CharacterComponentStruct.CapsuleComponent = DuplicateObject(CapsuleComponent, NULL);
 	Character.CharacterComponentStruct.CapsuleHalfHeight = GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight();
 	Character.CharacterComponentStruct.SkeletalMesh = GetMesh()->SkeletalMesh;
 	Character.CharacterComponentStruct.AnimBlueprintClass = GetMesh()->AnimBlueprintGeneratedClass;
 	Character.CharacterComponentStruct.RelativeLocation = GetMesh()->RelativeLocation;
+
+	StartingBattleLocation = GetActorLocation();
+
+	BattleCharacterState = EBattleCharacterState::Idle;
 
 	if (EncounterVolume != NULL)
 	{
@@ -45,6 +50,7 @@ void AProjectRCharacter::Tick(float DeltaSeconds){
 
 void AProjectRCharacter::MakeCharacterStruct(UPARAM(ref) FCharacterStruct& CharacterStruct)
 {
+	CharacterStruct.CharacterComponentStruct.CapsuleComponent = GetCapsuleComponent();
 	CharacterStruct.CharacterComponentStruct.CapsuleHalfHeight = GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight();
 	CharacterStruct.CharacterComponentStruct.SkeletalMesh = GetMesh()->SkeletalMesh;
 	CharacterStruct.CharacterComponentStruct.AnimBlueprintClass = GetMesh()->AnimBlueprintGeneratedClass;
@@ -58,7 +64,8 @@ void AProjectRCharacter::InitializeCharacter(UPARAM(ref) FCharacterStruct& Chara
 	Character.HitPoints = CharacterStruct.HitPoints;
 	Character.MagicPower = CharacterStruct.MagicPower;
 
-	GetCapsuleComponent()->SetCapsuleHalfHeight(CharacterStruct.CharacterComponentStruct.CapsuleHalfHeight);
+	GetCapsuleComponent()->SetCapsuleHalfHeight(CharacterStruct.CharacterComponentStruct.CapsuleComponent->GetUnscaledCapsuleHalfHeight());
+	GetCapsuleComponent()->SetCapsuleRadius(CharacterStruct.CharacterComponentStruct.CapsuleComponent->GetUnscaledCapsuleRadius());
 	GetMesh()->SetSkeletalMesh(CharacterStruct.CharacterComponentStruct.SkeletalMesh);
 	GetMesh()->AnimBlueprintGeneratedClass = CharacterStruct.CharacterComponentStruct.AnimBlueprintClass;
 	GetMesh()->InitAnim(true);
@@ -73,4 +80,23 @@ void AProjectRCharacter::SetATBProgress(float AtbProgress)
 float AProjectRCharacter::GetATBProgress()
 {
 	return Character.AtbProgress;
+}
+
+void AProjectRCharacter::ChangeHitpoints(int32 DeltaHitpoints)
+{
+	Character.HitPoints += DeltaHitpoints;
+	if (DeltaHitpoints <= 0)
+	{
+		this->HitpointsReducedEvent(abs(DeltaHitpoints));
+	}
+}
+
+int32 AProjectRCharacter::GetHitpoints()
+{
+	return Character.HitPoints;
+}
+
+int32 AProjectRCharacter::GetAttackPower()
+{
+	return Character.AttackPower;
 }

@@ -8,6 +8,9 @@ struct FCharacterComponentStruct
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStruct)
+		UCapsuleComponent* CapsuleComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStruct)
 		USkeletalMesh* SkeletalMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStruct)
@@ -24,6 +27,7 @@ struct FCharacterComponentStruct
 
 	FCharacterComponentStruct()
 	{
+		CapsuleComponent = NULL;
 		SkeletalMesh = NULL;
 		AnimBlueprintClass = NULL;
 		AnimInstance = NULL;

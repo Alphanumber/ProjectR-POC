@@ -3,7 +3,10 @@
 #include "GameFramework/Character.h"
 #include "EncounterVolume.h"
 #include "ProjectRStructs.h"
+#include "ProjectREnums.h"
 #include "ProjectRCharacter.generated.h"
+
+class AProjectRCharacter;
 
 UCLASS(config=Game)
 class AProjectRCharacter : public ACharacter
@@ -22,6 +25,18 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Encounter)
 	AEncounterVolume* EncounterVolume;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Battle)
+	FString QueuedCommand;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Battle)
+	AProjectRCharacter* TargetCharacter;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Battle)
+	FVector StartingBattleLocation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Battle)
+	EBattleCharacterState BattleCharacterState;
+
 	UFUNCTION(BlueprintNativeEvent, Category = "Initialize")
 	void BeginPlay();
 
@@ -39,4 +54,16 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Character)
 	float GetATBProgress();
+
+	UFUNCTION(BlueprintCallable, Category = Battle)
+	void ChangeHitpoints(int32 DeltaHitpoints);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = Battle)
+	virtual void HitpointsReducedEvent(int32 Hitpoints);
+
+	UFUNCTION(BlueprintCallable, Category = Battle)
+	int32 GetHitpoints();
+
+	UFUNCTION(BlueprintCallable, Category = Battle)
+	int32 GetAttackPower();
 };

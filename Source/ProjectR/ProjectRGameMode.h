@@ -10,6 +10,9 @@ class AProjectRGameMode : public AGameMode
 
 public:
 	AProjectRGameMode(const FObjectInitializer& ObjectInitializer);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Battle)
+	AActor* ActorToFace;
 };
 
 
