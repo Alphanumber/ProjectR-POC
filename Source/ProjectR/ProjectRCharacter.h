@@ -37,6 +37,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Battle)
 	EBattleCharacterState BattleCharacterState;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Exploration)
+	EExplorationCharacterState ExplorationCharacterState;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Exploration)
+	TArray<FString> DialogueQueue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Exploration)
+	FDialogueStruct DialogueStruct;
+
 	UFUNCTION(BlueprintNativeEvent, Category = "Initialize")
 	void BeginPlay();
 
@@ -66,4 +75,13 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Battle)
 	int32 GetAttackPower();
+
+	UFUNCTION(BlueprintCallable, Category = Battle)
+	void AdvanceDialogueQueue();
+
+	UFUNCTION(BlueprintCallable, Category = Battle)
+	void ResetDialogueQueue();
+
+	UFUNCTION(BlueprintCallable, Category = Battle)
+	bool isDialogueOver();
 };

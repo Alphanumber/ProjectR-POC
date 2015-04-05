@@ -94,7 +94,7 @@ void AProjectRExplorationCharacter::LookUpAtRate(float Rate)
 
 void AProjectRExplorationCharacter::MoveForward(float Value)
 {
-	if ((Controller != NULL) && (Value != 0.0f))
+	if ((Controller != NULL) && (Value != 0.0f) && isControllable())
 	{
 		// find out which way is forward
 		const FRotator Rotation = Controller->GetControlRotation();
@@ -108,7 +108,7 @@ void AProjectRExplorationCharacter::MoveForward(float Value)
 
 void AProjectRExplorationCharacter::MoveRight(float Value)
 {
-	if ((Controller != NULL) && (Value != 0.0f))
+	if ((Controller != NULL) && (Value != 0.0f) && isControllable())
 	{
 		// find out which way is right
 		const FRotator Rotation = Controller->GetControlRotation();
@@ -119,4 +119,13 @@ void AProjectRExplorationCharacter::MoveRight(float Value)
 		// add movement in that direction
 		AddMovementInput(Direction, Value);
 	}
+}
+
+bool AProjectRExplorationCharacter::isControllable()
+{
+	if (DialogueState == EDialogueState::Talking)
+	{
+		return false;
+	}
+	return true;
 }

@@ -100,3 +100,22 @@ int32 AProjectRCharacter::GetAttackPower()
 {
 	return Character.AttackPower;
 }
+
+void AProjectRCharacter::AdvanceDialogueQueue()
+{
+	DialogueStruct.DialogueIndex++;
+}
+
+void AProjectRCharacter::ResetDialogueQueue()
+{
+	DialogueStruct.DialogueIndex = 0;
+}
+
+bool AProjectRCharacter::isDialogueOver()
+{
+	if (DialogueStruct.DialogueIndex < DialogueStruct.DialogueQueue.Num())
+	{
+		return false;
+	}
+	return true;
+}

@@ -16,3 +16,17 @@ enum class EBattleCharacterState : uint8
 	Transition,
 	Action
 };
+
+UENUM(BlueprintType)
+enum class EExplorationCharacterState : uint8
+{
+	Friendly,
+	Hostile
+};
+
+UENUM(BlueprintType)
+enum class EDialogueState: uint8
+{
+	Roaming,
+	Talking
+};

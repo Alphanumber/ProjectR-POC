@@ -72,3 +72,20 @@ struct FCharacterStruct
 		CharacterComponentStruct = FCharacterComponentStruct::FCharacterComponentStruct();
 	}
 };
+
+USTRUCT(BlueprintType)
+struct FDialogueStruct
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Dialogue)
+	TArray<FString> DialogueQueue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Dialogue)
+	int32 DialogueIndex;
+
+	FDialogueStruct()
+	{
+		DialogueIndex = 0;
+	}
+};

@@ -40,6 +40,13 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Party)
 		TArray<FCharacterStruct> BattleParty;
 
+	/** State of whether character is interacting with another character */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Dialogue)
+		EDialogueState DialogueState;
+
+	UFUNCTION(BlueprintCallable, Category = Exploration)
+		bool isControllable();
+
 protected:
 
 	/** Called for forwards/backward input */
